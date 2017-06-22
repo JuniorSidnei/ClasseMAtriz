@@ -140,22 +140,30 @@ Matrix Matrix::getInversa()
 	return Matrix();
 }
 
-Matrix Matrix::operator *(Matrix &mat)
+void Matrix::operator *(Matrix &mat)
 {
-
-	//O matriz principal será a nova matriz multiplicada.
+	float mullMat[3][3];
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			int auX = 0, auY = 0;
-			
-			this->_Mat[i][j] = this->_Mat[i][j];
+			for (int k = 0; k < 3; k++)
+			{
+				mullMat[i][j] = this->_Mat[i][j] + (this->_Mat[i][k] * mat._Mat[k][j]);
+			}
 		}
 	}
-	
-	
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			std::cout << this->_Mat[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
+
 
 Matrix::~Matrix()
 {

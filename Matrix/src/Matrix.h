@@ -20,7 +20,7 @@ public:
 
 
 	//Sobrecargas
-	Matrix operator *(Matrix &mat);
+	void operator *(Matrix &mat);
 
 	~Matrix();
 };
