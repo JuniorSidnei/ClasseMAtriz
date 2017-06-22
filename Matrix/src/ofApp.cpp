@@ -1,11 +1,17 @@
 #include "ofApp.h"
+#include "Matrix.h"
 
-MatrixClass mat;
+Matrix mat;
+Matrix mat2;
 
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-	
+	//mat.Ident();
+	mat.Floats(1, -4, -7, 2,-3,2,1,-5,-3);
+	mat.getDeterm();
+	mat.getInversa();
+	mat.operator*(mat2);
 }
 
 //--------------------------------------------------------------

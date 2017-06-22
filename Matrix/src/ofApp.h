@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "MatrixClass.h"
 
 class ofApp : public ofBaseApp{
 
