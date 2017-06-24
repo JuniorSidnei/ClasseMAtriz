@@ -3,16 +3,21 @@
 
 Matrix mat;
 Matrix mat2;
+Matrix mat3;
 
 //--------------------------------------------------------------
 void ofApp::setup()
 {
 	//mat.Ident();
-	mat.Floats(1,2,3,4,5,6,7,8,9);
-	mat2.Floats(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	mat.Floats(1,1,1,1,1,1,1,1,1);
+	mat2.Floats(2,3,3,3,3,3,3,3,4);
 	//mat.getDeterm();
 	//mat.getInversa();
-	mat.operator*(mat2);
+	mat2.print();
+	mat2 = mat;
+	mat2.print();
+	//mat3 = mat * mat2;
+	//mat3 *= mat2;
 }
 
 //--------------------------------------------------------------
