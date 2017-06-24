@@ -1,13 +1,11 @@
 #include "Matrix.h"
-//TODO CONSTRUTOR DE COPIA
-//TODO COPIA DE MATRIZ, OPERADOR = 
 
 
-//TODO TRANSLACAO
-//TODO ROTACAO
-//TODO ESCALA
+//TODO translacao
+//TODO rotacao
+//TODO escala
 
-//TODO QUANDO TIVER PRONTO, ARRUMAR A INVERSA PARA MATRIZES
+//TODO quando tiver tudo pronto, arrumar a inversa para matrizes
 
 
 Matrix::Matrix()
@@ -33,6 +31,10 @@ void Matrix::print()
 //Setando valor em determinada posição da matriz
 void Matrix::setValor(int x, int y, float valor) {
 	_Mat[x][y] = valor;
+}
+void Matrix::setLocation(int x, int y)
+{
+	_Mat[x][y];
 }
 //Setando valor em A da matriz
 void Matrix::setA(float value)
@@ -113,8 +115,53 @@ void Matrix::getTranspose()
 	}
 
 }
+//Mostrando o valor em A
+float Matrix::getA()
+{
+	return _Mat[0][0];
+}
+//Mostrando o valor em B
+float Matrix::getB()
+{
+	return _Mat[0][1];
+}
+//Mostrando o valor em C
+float Matrix::getC()
+{
+	return _Mat[0][2];;
+}
+//Mostrando o valor em D
+float Matrix::getD()
+{
+	return _Mat[1][0];
+}
+//Mostrando o valor em E
+float Matrix::getE()
+{
+	return  _Mat[1][1];
+}
+//Mostrando o valor em F
+float Matrix::getF()
+{
+	return _Mat[1][2];
+}
+//Mostrando o valor em G
+float Matrix::getG()
+{
+	return _Mat[2][0];
+}
+//Mostrando o valor em H
+float Matrix::getH()
+{
+	return _Mat[2][1];
+}
+//Mostrando o valor em I
+float Matrix::getI()
+{
+	return _Mat[2][2];
+}
 //Matriz identidade inicializada
-void Matrix::Identity()
+Matrix Matrix::Identity()
 {
 	//Atribuindo valores a _Matriz identidade
 	for (int c = 0; c < 3; c++)
@@ -128,18 +175,12 @@ void Matrix::Identity()
 		}
 	}
 	//Mostrando a matriz identidade
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			std::cout << this->_Mat[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
+	print();
 
+	return Matrix();
 }
 //Iniciando uma matriz com valores desejados
-void Matrix::Floats(float a, float b, float c, float d, float e, float f, float g, float h, float i)
+Matrix Matrix::Floats(float a, float b, float c, float d, float e, float f, float g, float h, float i)
 {
 	//Cria uma nova matriz com valores desejados
 	this->_Mat[0][0] = a;
@@ -153,7 +194,20 @@ void Matrix::Floats(float a, float b, float c, float d, float e, float f, float 
 	this->_Mat[2][2] = i;
 
 	
-		std::cout << "Matriz criado com sucesso!" << std::endl;
+		std::cout << "Matriz inicializada com sucesso!" << std::endl;
+
+		return Matrix();
+}
+Matrix Matrix::Copy(Matrix &mat)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			_Mat[i][j] = mat.getValueInPosition(i, j);
+		}
+	}
+	return mat;
 }
 //Matriz de translação
 void Matrix::Translation(float x, float y)
@@ -251,6 +305,7 @@ Matrix Matrix::getInverse()
 				mInv[i][j] = 0;
 		}
 	}
+	getInverse();
 	//Mostrando a matriz inversa na tela
 	for (int i = 0; i < 3; i++)
 	{
@@ -295,8 +350,6 @@ Matrix Matrix::operator*= (Matrix &mat)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			float valor = 0;
-
 			for (int k = 0; k < 3; k++) {
 				// Soma direto na matriz pra gravar o resultado
 				_Mat[i][j] += _Mat[i][k] * mat.getValueInPosition(k, j);
@@ -319,6 +372,65 @@ Matrix Matrix::operator=(Matrix &mat)
 	}
 	
 	return mat;
+}
+//Sobrecarga, soma de matrizes
+Matrix Matrix::operator+(Matrix & mat)
+{
+	Matrix sumMat;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			sumMat.setValor(i, j, (_Mat[i][j] + mat.getValueInPosition(i, j)));
+		}
+	}
+
+	sumMat.print();
+	return sumMat;
+}
+//Sobrecarga, soma e atribuição de matrizes
+Matrix Matrix::operator+=(Matrix &mat)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			// Soma direto na matriz pra gravar o resultado
+			_Mat[i][j] += mat.getValueInPosition(i, j);
+		}
+	}
+
+	print();
+	return *this;
+}
+//Sobrecarga, subtração de matrizes
+Matrix Matrix::operator-(Matrix &mat)
+{
+	Matrix subMat;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			subMat.setValor(i, j, (_Mat[i][j] - mat.getValueInPosition(i, j)));
+		}
+	}
+
+	subMat.print();
+	return subMat;
+}
+//Sobrecarga, subtração e atribuição de matrizes
+Matrix Matrix::operator-=(Matrix &mat)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			_Mat[i][j] -= mat.getValueInPosition(i, j);
+		}
+	}
+
+	print();
+	return *this;
 }
 
 

@@ -5,16 +5,17 @@ Matrix mat;
 Matrix mat2;
 Matrix mat3;
 
+
 //--------------------------------------------------------------
 void ofApp::setup()
 {
 	//mat.Ident();
 	mat.Floats(1,1,1,1,1,1,1,1,1);
-	mat2.Floats(2,3,3,3,3,3,3,3,4);
+	mat2.Floats(5,5,5,5,5,5,5,5,5);
 	//mat.getDeterm();
 	//mat.getInversa();
 	mat2.print();
-	mat2 = mat;
+	mat2.Copy(mat);
 	mat2.print();
 	//mat3 = mat * mat2;
 	//mat3 *= mat2;
