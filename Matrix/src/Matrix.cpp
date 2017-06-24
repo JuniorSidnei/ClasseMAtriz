@@ -1,9 +1,12 @@
 #include "Matrix.h"
 
+//TODO Transformação de um ofVec2f pela matriz (multiplicação de vetor pela matriz). O método terá a assinatura:
+	 //ofVec2f Matrix3f::transform(const ofVec2f& vector, float z = 1.0f) const;
 
 //TODO translacao
 //TODO rotacao
 //TODO escala
+//////
 
 //TODO quando tiver tudo pronto, arrumar a inversa para matrizes
 
@@ -198,6 +201,7 @@ Matrix Matrix::Floats(float a, float b, float c, float d, float e, float f, floa
 
 		return Matrix();
 }
+//Matriz de copia
 Matrix Matrix::Copy(Matrix &mat)
 {
 	for (int i = 0; i < 3; i++)
@@ -215,18 +219,20 @@ void Matrix::Translation(float x, float y)
 	//Criar a matriz identidade e através dela, colocar o x e o y nas suas posicões, regra da mão direita
 	// 1 0 x
 	// 0 1 y
-	// 0 0 0
+	// 0 0 1
 	Identity();
+	_Mat[0][2] = x;
+	_Mat[1][2] = y;
 }
 //Matriz de rotação
 void Matrix::Rotation(float angle)
 {
 	// cos0 -sin0 0
 	// sin0  cos0 0
-	//  0    0	  0
-	this->_Mat[0][0] = cos(angle); this->_Mat[0][1] = -sin(angle); this->_Mat[0][2] = 0;
-	this->_Mat[1][0] = sin(angle); this->_Mat[1][1] = cos(angle);  this->_Mat[1][2] = 0;
-	this->_Mat[2][0] = 0;		   this->_Mat[2][1] = 0;		   this->_Mat[2][2] = 0;
+	//  0    0	  1
+	_Mat[0][0] = cos(angle); _Mat[0][1] = -sin(angle); _Mat[0][2] = 0;
+	_Mat[1][0] = sin(angle); _Mat[1][1] = cos(angle);  _Mat[1][2] = 0;
+	_Mat[2][0] = 0;		     _Mat[2][1] = 0;		   _Mat[2][2] = 1;
 }
 //Matriz de escala
 void Matrix::Scale(float scaleX, float scaleY)
@@ -234,8 +240,10 @@ void Matrix::Scale(float scaleX, float scaleY)
 	//Criar a matriz identidade e através dela, colocar o x e o y nas suas posicões, regra da mão direita
 	//scalex		0		0
 	//	0		 scaley		0
-	//	0			0		0
+	//	0			0		1
 	Identity();
+	_Mat[0][0] = scaleX;
+	_Mat[1][1] = scaleY;
 }
 //Retorna o valor do determinante
 float Matrix::getDeterminant()
