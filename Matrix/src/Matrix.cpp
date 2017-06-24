@@ -1,12 +1,12 @@
 #include "Matrix.h"
 
-//TODO TransformaÁ„o de um ofVec2f pela matriz (multiplicaÁ„o de vetor pela matriz). O mÈtodo ter· a assinatura:
+//TODO Transforma√ß√£o de um ofVec2f pela matriz (multiplica√ß√£o de vetor pela matriz). O m√©todo ter√° a assinatura:
 	 //ofVec2f Matrix3f::transform(const ofVec2f& vector, float z = 1.0f) const;
 
 //TODO translacao
 //TODO rotacao
 //TODO escala
-//////
+//////Essas matrizes acima n√£o sei se est√£o 100% certas
 
 //TODO quando tiver tudo pronto, arrumar a inversa para matrizes
 
@@ -31,7 +31,7 @@ void Matrix::print()
 		std::cout << std::endl;
 	}
 }
-//Setando valor em determinada posiÁ„o da matriz
+//Setando valor em determinada posi√ß√£o da matriz
 void Matrix::setValor(int x, int y, float valor) {
 	_Mat[x][y] = valor;
 }
@@ -213,10 +213,10 @@ Matrix Matrix::Copy(Matrix &mat)
 	}
 	return mat;
 }
-//Matriz de translaÁ„o
+//Matriz de transla√ß√£o
 void Matrix::Translation(float x, float y)
 {
-	//Criar a matriz identidade e atravÈs dela, colocar o x e o y nas suas posicıes, regra da m„o direita
+	//Criar a matriz identidade e atrav√©s dela, colocar o x e o y nas suas posic√µes, regra da m√£o direita
 	// 1 0 x
 	// 0 1 y
 	// 0 0 1
@@ -224,7 +224,7 @@ void Matrix::Translation(float x, float y)
 	_Mat[0][2] = x;
 	_Mat[1][2] = y;
 }
-//Matriz de rotaÁ„o
+//Matriz de rota√ß√£o
 void Matrix::Rotation(float angle)
 {
 	// cos0 -sin0 0
@@ -237,7 +237,7 @@ void Matrix::Rotation(float angle)
 //Matriz de escala
 void Matrix::Scale(float scaleX, float scaleY)
 {
-	//Criar a matriz identidade e atravÈs dela, colocar o x e o y nas suas posicıes, regra da m„o direita
+	//Criar a matriz identidade e atrav√©s dela, colocar o x e o y nas suas posic√µes, regra da m√£o direita
 	//scalex		0		0
 	//	0		 scaley		0
 	//	0			0		1
@@ -326,7 +326,7 @@ Matrix Matrix::getInverse()
 	
 	return Matrix();
 }
-//Sobrecarga, multiplicaÁ„o de matrizes
+//Sobrecarga, multiplica√ß√£o de matrizes
 Matrix Matrix::operator*(Matrix &mat)
 {
 	Matrix mullMat;
@@ -350,7 +350,7 @@ Matrix Matrix::operator*(Matrix &mat)
 	return mullMat;
 
 }
-//Sobrecarga, multiplicaÁ„o e retornando o valor a matriz
+//Sobrecarga, multiplica√ß√£o e retornando o valor a matriz
 Matrix Matrix::operator*= (Matrix &mat)
 {
 
@@ -396,7 +396,7 @@ Matrix Matrix::operator+(Matrix & mat)
 	sumMat.print();
 	return sumMat;
 }
-//Sobrecarga, soma e atribuiÁ„o de matrizes
+//Sobrecarga, soma e atribui√ß√£o de matrizes
 Matrix Matrix::operator+=(Matrix &mat)
 {
 	for (int i = 0; i < 3; i++)
@@ -411,7 +411,7 @@ Matrix Matrix::operator+=(Matrix &mat)
 	print();
 	return *this;
 }
-//Sobrecarga, subtraÁ„o de matrizes
+//Sobrecarga, subtra√ß√£o de matrizes
 Matrix Matrix::operator-(Matrix &mat)
 {
 	Matrix subMat;
@@ -426,7 +426,7 @@ Matrix Matrix::operator-(Matrix &mat)
 	subMat.print();
 	return subMat;
 }
-//Sobrecarga, subtraÁ„o e atribuiÁ„o de matrizes
+//Sobrecarga, subtra√ß√£o e atribui√ß√£o de matrizes
 Matrix Matrix::operator-=(Matrix &mat)
 {
 	for (int i = 0; i < 3; i++)
