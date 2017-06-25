@@ -3,10 +3,7 @@
 //TODO Transformação de um ofVec2f pela matriz (multiplicação de vetor pela matriz). O método terá a assinatura:
 	 //ofVec2f Matrix3f::transform(const ofVec2f& vector, float z = 1.0f) const;
 
-//TODO translacao
-//TODO rotacao
-//TODO escala
-//////
+
 
 //TODO quando tiver tudo pronto, arrumar a inversa para matrizes
 
@@ -221,8 +218,8 @@ void Matrix::Translation(float x, float y)
 	// 0 1 y
 	// 0 0 1
 	Identity();
-	_Mat[0][2] = x;
-	_Mat[1][2] = y;
+	_Mat[2][0] = x;
+	_Mat[2][1] = y;
 }
 //Matriz de rotação
 void Matrix::Rotation(float angle)
@@ -441,6 +438,26 @@ Matrix Matrix::operator-=(Matrix &mat)
 	return *this;
 }
 
+
+ofVec2f Matrix::transform(const ofVec2f & vector, float z) const
+{
+	float valor;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+
+			for (int k = 0; k < 3; k++) {
+				//calcula a multiplicação do vetor nas duas posicoes pela linha da matriz
+				valor += vector.x * _Mat[i][k];
+				valor += vector.y * _Mat[i][k];
+			}
+
+			
+		}
+	}
+	return vector;
+}
 
 Matrix::~Matrix()
 {

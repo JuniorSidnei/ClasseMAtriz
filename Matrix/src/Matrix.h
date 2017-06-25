@@ -62,5 +62,10 @@ public:
 	Matrix operator -(Matrix &mat);
 	Matrix operator -=(Matrix &mat);
 
+
+	//Vetor multiplicado pela matriz
+	ofVec2f transform(const ofVec2f& vector, float z = 1.0f) const;
+
+
 	~Matrix();
 };
