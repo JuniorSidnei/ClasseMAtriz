@@ -1,20 +1,5 @@
 #include "Matrix.h"
 
-//TODO Transformação de um ofVec2f pela matriz (multiplicação de vetor pela matriz). O método terá a assinatura:
-	 //ofVec2f Matrix3f::transform(const ofVec2f& vector, float z = 1.0f) const;
-
-<<<<<<< HEAD
-
-=======
-//TODO translacao
-//TODO rotacao
-//TODO escala
-//////Essas matrizes acima não sei se estão 100% certas
->>>>>>> origin/master
-
-//TODO quando tiver tudo pronto, arrumar a inversa para matrizes
-
-
 Matrix::Matrix()
 {
 }
@@ -35,7 +20,7 @@ void Matrix::print()
 		std::cout << std::endl;
 	}
 }
-//Setando valor em determinada posição da matriz
+//Setando valor em determinada posiÃ§Ã£o da matriz
 void Matrix::setValor(int x, int y, float valor) {
 	_Mat[x][y] = valor;
 }
@@ -217,10 +202,10 @@ Matrix Matrix::Copy(Matrix &mat)
 	}
 	return mat;
 }
-//Matriz de translação
+//Matriz de translaÃ§Ã£o
 void Matrix::Translation(float x, float y)
 {
-	//Criar a matriz identidade e através dela, colocar o x e o y nas suas posicões, regra da mão direita
+	//Criar a matriz identidade e atravÃ©s dela, colocar o x e o y nas suas posicÃµes, regra da mÃ£o direita
 	// 1 0 x
 	// 0 1 y
 	// 0 0 1
@@ -228,7 +213,7 @@ void Matrix::Translation(float x, float y)
 	_Mat[2][0] = x;
 	_Mat[2][1] = y;
 }
-//Matriz de rotação
+//Matriz de rotaÃ§Ã£o
 void Matrix::Rotation(float angle)
 {
 	// cos0 -sin0 0
@@ -241,7 +226,7 @@ void Matrix::Rotation(float angle)
 //Matriz de escala
 void Matrix::Scale(float scaleX, float scaleY)
 {
-	//Criar a matriz identidade e através dela, colocar o x e o y nas suas posicões, regra da mão direita
+	//Criar a matriz identidade e atravÃ©s dela, colocar o x e o y nas suas posicÃµes, regra da mÃ£o direita
 	//scalex		0		0
 	//	0		 scaley		0
 	//	0			0		1
@@ -330,7 +315,7 @@ Matrix Matrix::getInverse()
 	
 	return Matrix();
 }
-//Sobrecarga, multiplicação de matrizes
+//Sobrecarga, multiplicaÃ§Ã£o de matrizes
 Matrix Matrix::operator*(Matrix &mat)
 {
 	Matrix mullMat;
@@ -354,7 +339,7 @@ Matrix Matrix::operator*(Matrix &mat)
 	return mullMat;
 
 }
-//Sobrecarga, multiplicação e retornando o valor a matriz
+//Sobrecarga, multiplicaÃ§Ã£o e retornando o valor a matriz
 Matrix Matrix::operator*= (Matrix &mat)
 {
 
@@ -400,7 +385,7 @@ Matrix Matrix::operator+(Matrix & mat)
 	sumMat.print();
 	return sumMat;
 }
-//Sobrecarga, soma e atribuição de matrizes
+//Sobrecarga, soma e atribuiÃ§Ã£o de matrizes
 Matrix Matrix::operator+=(Matrix &mat)
 {
 	for (int i = 0; i < 3; i++)
@@ -415,7 +400,7 @@ Matrix Matrix::operator+=(Matrix &mat)
 	print();
 	return *this;
 }
-//Sobrecarga, subtração de matrizes
+//Sobrecarga, subtraÃ§Ã£o de matrizes
 Matrix Matrix::operator-(Matrix &mat)
 {
 	Matrix subMat;
@@ -430,7 +415,7 @@ Matrix Matrix::operator-(Matrix &mat)
 	subMat.print();
 	return subMat;
 }
-//Sobrecarga, subtração e atribuição de matrizes
+//Sobrecarga, subtraÃ§Ã£o e atribuiÃ§Ã£o de matrizes
 Matrix Matrix::operator-=(Matrix &mat)
 {
 	for (int i = 0; i < 3; i++)
@@ -455,7 +440,7 @@ ofVec2f Matrix::transform(const ofVec2f & vector, float z) const
 		{
 
 			for (int k = 0; k < 3; k++) {
-				//calcula a multiplica��o do vetor nas duas posicoes pela linha da matriz
+				//calcula a multiplicação do vetor nas duas posicoes pela linha da matriz
 				valor += vector.x * _Mat[i][k];
 				valor += vector.y * _Mat[i][k];
 			}
